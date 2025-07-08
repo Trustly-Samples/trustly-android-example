@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TrustlySDKDemoAndroid</string>
-    <string name="connect_my_bank">Connect my bank</string>
+    <string name="open_bottom_sheet">Open Bottom Sheet Widget</string>
     <string name="success">Success!</string>
     <string name="canceled">Canceled =(</string>
     <string name="back_to_home">Back to home</string>

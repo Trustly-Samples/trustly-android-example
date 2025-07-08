@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
     <net.trustly.android.sdk.views.TrustlyView
-        android:id="@+id/trustlyWidget"
+        android:id="@+id/trustly_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnOpenBottomSheet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/open_bottom_sheet" />
 
 </LinearLayout>

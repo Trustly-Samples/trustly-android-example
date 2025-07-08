@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -32,6 +33,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val openBottomSheet = findViewById<AppCompatButton>(R.id.btnOpenBottomSheet)
+        openBottomSheet.setOnClickListener {
+            BottomSheetWidgetFragment({
+                updatePaymentProviderId(it)
+            }).show(supportFragmentManager, BottomSheetWidgetFragment.TAG)
+        }
 
         if (EstablishData.DYNAMIC_REQUEST_SIGNATURE) postRequestSignature()
         else initWidget()
@@ -63,9 +71,13 @@ class MainActivity : AppCompatActivity() {
     private fun initWidget() {
         val payWithMyBankWidget = findViewById<TrustlyView>(R.id.trustlyWidget)
         payWithMyBankWidget.selectBankWidget(establishDataValues).onBankSelected { _, data ->
-            establishDataValues[PAYMENT_PROVIDER_ID] = data[PAYMENT_PROVIDER_ID].toString()
-            openLightbox()
+            updatePaymentProviderId(data)
         }
+    }
+
+    private fun updatePaymentProviderId(data: Map<String, String>) {
+        establishDataValues[PAYMENT_PROVIDER_ID] = data[PAYMENT_PROVIDER_ID].toString()
+        openLightbox()
     }
 
     private fun openLightbox() {
