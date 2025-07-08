@@ -12,6 +12,7 @@ class LightBoxActivity : AppCompatActivity() {
 
     private lateinit var lightBoxWidget: TrustlyView
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_light_box)

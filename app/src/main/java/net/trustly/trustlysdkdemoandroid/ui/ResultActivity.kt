@@ -10,6 +10,7 @@ class ResultActivity : AppCompatActivity() {
 
     private lateinit var txtResult: AppCompatTextView
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
