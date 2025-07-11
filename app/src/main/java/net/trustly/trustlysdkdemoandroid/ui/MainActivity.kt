@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        findViewById<AppCompatButton>(R.id.btnConnectMyBank).setOnClickListener {
+            openLightbox()
+        }
+
         if (EstablishData.DYNAMIC_REQUEST_SIGNATURE) postRequestSignature()
         else initWidget()
     }

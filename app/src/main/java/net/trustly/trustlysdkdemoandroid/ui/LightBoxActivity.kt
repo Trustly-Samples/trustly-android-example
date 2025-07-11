@@ -12,12 +12,33 @@ class LightBoxActivity : AppCompatActivity() {
 
     private lateinit var lightBoxWidget: TrustlyView
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_light_box)
 
         val establishDataValues = intent.getSerializableExtra(ESTABLISH_DATA) as Map<String, String>
+        if (establishDataValues.contains(STATUS_PARAM)) {
+            val status = establishDataValues[STATUS_PARAM].equals(STATUS_SUCCESS)
+            if (status) redirectToScreen(Callback.RETURN)
+            else redirectToScreen(Callback.CANCEL)
+        } else {
+            initViews(establishDataValues)
+        }
+    }
 
+    override fun onRestart() {
+        super.onRestart()
+
+        if (intent.data == null) finish()
+        lightBoxWidget.proceedToChooseAccount()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    private fun initViews(establishDataValues: Map<String, String>) {
         lightBoxWidget = findViewById(R.id.lightBoxWidget)
         lightBoxWidget.establish(establishDataValues)
             .onReturn(
@@ -29,12 +50,6 @@ class LightBoxActivity : AppCompatActivity() {
                     redirectToScreen(Callback.CANCEL)
                 })
             )
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-
-        lightBoxWidget.proceedToChooseAccount()
     }
 
     private fun redirectToScreen(callback: Callback) {
@@ -54,5 +69,7 @@ class LightBoxActivity : AppCompatActivity() {
 
     companion object {
         const val ESTABLISH_DATA = "establishData"
+        const val STATUS_PARAM = "status"
+        const val STATUS_SUCCESS = "2"
     }
 }
