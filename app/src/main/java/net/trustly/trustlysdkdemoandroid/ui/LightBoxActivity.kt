@@ -30,7 +30,6 @@ class LightBoxActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
 
-        if (intent.data == null) finish()
         lightBoxWidget.proceedToChooseAccount()
     }
 

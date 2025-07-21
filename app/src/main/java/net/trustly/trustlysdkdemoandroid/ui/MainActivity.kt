@@ -17,6 +17,8 @@ import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var payWithMyBankWidget: TrustlyView
+
     private val mCompositeDisposable: CompositeDisposable
         get() = CompositeDisposable()
 
@@ -34,12 +36,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        payWithMyBankWidget = findViewById(R.id.trustlyWidget)
         findViewById<AppCompatButton>(R.id.btnConnectMyBank).setOnClickListener {
             openLightbox()
         }
 
         if (EstablishData.DYNAMIC_REQUEST_SIGNATURE) postRequestSignature()
-        else initWidget()
+        initWidget()
     }
 
     override fun onDestroy() {
@@ -52,21 +55,19 @@ class MainActivity : AppCompatActivity() {
         addDisposable(retrofitClient.postRequestSignature(establishDataValues)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnTerminate {
-                initWidget()
-            }
             .subscribe({
                 val requestSignature = it.string()
                 Log.i(TAG, "Dynamic requestSignature: $requestSignature")
-                establishDataValues["requestSignature"] = requestSignature
-            }, {
+                establishDataValues["requestSignature"] = requestSignature.replace("\"", "")
+            },{
                 Log.e(TAG, it.message, it)
+            }, {
+                initWidget()
             })
         )
     }
 
     private fun initWidget() {
-        val payWithMyBankWidget = findViewById<TrustlyView>(R.id.trustlyWidget)
         payWithMyBankWidget.selectBankWidget(establishDataValues).onBankSelected { _, data ->
             establishDataValues[PAYMENT_PROVIDER_ID] = data[PAYMENT_PROVIDER_ID].toString()
             openLightbox()

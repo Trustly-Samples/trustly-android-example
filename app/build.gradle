@@ -10,6 +10,7 @@ android {
     defaultConfig {
         applicationId "net.trustly.trustlysdkdemoandroid"
         minSdk 24
+        //noinspection OldTargetApi
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -33,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation 'net.trustly:trustly-android-sdk:3.6.0'
+    implementation 'net.trustly:trustly-android-sdk:3.7.0'
 
     implementation 'androidx.core:core-ktx:1.16.0'
     implementation 'androidx.appcompat:appcompat:1.7.1'
