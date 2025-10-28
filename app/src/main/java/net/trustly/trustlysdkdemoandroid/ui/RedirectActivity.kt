@@ -17,8 +17,11 @@ class RedirectActivity : AppCompatActivity() {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }.putExtra(LightBoxActivity.ESTABLISH_DATA, transactionDetail as Serializable)
                 .run { startActivity(this) }
+        } else {
+            Intent(this, LightBoxActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            }.run { startActivity(this) }
         }
-        finish()
     }
 
     private fun getTransactionDetailFromUri(appLinkData: Uri): Map<String, String> {
