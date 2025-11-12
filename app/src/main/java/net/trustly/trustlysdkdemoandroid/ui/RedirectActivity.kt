@@ -11,18 +11,17 @@ class RedirectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val intent = if (intent.extras != null && intent.data!!.getQueryParameter(STATUS_PARAM) != null) {
+        if (intent.extras != null && intent.data!!.getQueryParameter(STATUS_PARAM) != null) {
             val transactionDetail = getTransactionDetailFromUri(intent.data!!)
             Intent(this, LightBoxActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }.putExtra(LightBoxActivity.ESTABLISH_DATA, transactionDetail as Serializable)
+                .run { startActivity(this) }
         } else {
             Intent(this, LightBoxActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            }
+            }.run { startActivity(this) }
         }
-        startActivity(intent)
-        finish()
     }
 
     private fun getTransactionDetailFromUri(appLinkData: Uri): Map<String, String> {
