@@ -25,6 +25,7 @@
         </activity>
         <activity
             android:name=".ui.LightBoxActivity"
+            android:configChanges="screenSize|orientation"
             android:exported="true" />
         <activity
             android:name=".ui.RedirectActivity"
