@@ -39,6 +39,16 @@
 
                 <data android:scheme="sdkdemo" />
             </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:host="sdk.demo.trustly.one" />
+                <data android:path="/start/oauth/app/" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.ResultActivity"
