@@ -41,11 +41,11 @@ class LightBoxActivity : AppCompatActivity() {
         lightBoxWidget = findViewById(R.id.lightBoxWidget)
         lightBoxWidget.establish(establishDataValues)
             .onReturn(
-                (TrustlyCallback { _: Trustly, _: Map<String, String> ->
+                (TrustlyCallback { _: Trustly?, _: Map<String, String> ->
                     redirectToScreen(Callback.RETURN)
                 })
             ).onCancel(
-                (TrustlyCallback { _: Trustly, _: Map<String, String> ->
+                (TrustlyCallback { _: Trustly?, _: Map<String, String> ->
                     redirectToScreen(Callback.CANCEL)
                 })
             )
