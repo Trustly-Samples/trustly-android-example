@@ -1,5 +1,6 @@
 package net.trustly.trustlysdkdemoandroid.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -25,7 +26,12 @@ class ResultActivity : AppCompatActivity() {
         txtResult = findViewById(R.id.txtResult)
 
         val backToHome = findViewById<AppCompatButton>(R.id.btnBackToHome)
-        backToHome.setOnClickListener { finish() }
+        backToHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun showResultText(result: Result) {

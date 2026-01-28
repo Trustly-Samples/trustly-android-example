@@ -13,7 +13,11 @@ object EstablishData {
         establishDataValues["currency"] = "USD"
         establishDataValues["merchantReference"] = "some_unique_transaction_identifier"
         establishDataValues["paymentType"] = "Retrieval"
+        establishDataValues["customer.name"] = "John"
+        establishDataValues["customer.address.country"] = "US"
         establishDataValues["metadata.urlScheme"] = "sdkdemo://"
+        establishDataValues["metadata.deeplinkStrategy"] = "deeplink-url"
+        establishDataValues["metadata.deeplinkUrl"] = "intent://sdk.demo.trustly.one/start/oauth/app/#Intent;scheme=https;end"
         establishDataValues["env"] = "sandbox"
         return establishDataValues
     }
