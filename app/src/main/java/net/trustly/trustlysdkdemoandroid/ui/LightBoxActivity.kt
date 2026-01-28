@@ -33,10 +33,6 @@ class LightBoxActivity : AppCompatActivity() {
         lightBoxWidget.proceedToChooseAccount()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun initViews(establishDataValues: Map<String, String>) {
         lightBoxWidget = findViewById(R.id.lightBoxWidget)
         lightBoxWidget.establish(establishDataValues)

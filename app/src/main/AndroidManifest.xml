@@ -25,24 +25,12 @@
         </activity>
         <activity
             android:name=".ui.LightBoxActivity"
-            android:launchMode="singleInstance"
             android:configChanges="screenSize|orientation"
-            android:exported="true" />
-        <activity
-            android:name=".ui.RedirectActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="sdkdemo" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.ResultActivity"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>
