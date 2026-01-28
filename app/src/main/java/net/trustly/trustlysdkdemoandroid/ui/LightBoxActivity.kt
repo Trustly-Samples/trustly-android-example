@@ -33,19 +33,15 @@ class LightBoxActivity : AppCompatActivity() {
         lightBoxWidget.proceedToChooseAccount()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun initViews(establishDataValues: Map<String, String>) {
         lightBoxWidget = findViewById(R.id.lightBoxWidget)
         lightBoxWidget.establish(establishDataValues)
             .onReturn(
-                (TrustlyCallback { _: Trustly, _: Map<String, String> ->
+                (TrustlyCallback { _: Trustly?, _: Map<String, String> ->
                     redirectToScreen(Callback.RETURN)
                 })
             ).onCancel(
-                (TrustlyCallback { _: Trustly, _: Map<String, String> ->
+                (TrustlyCallback { _: Trustly?, _: Map<String, String> ->
                     redirectToScreen(Callback.CANCEL)
                 })
             )

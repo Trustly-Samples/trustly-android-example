@@ -13,6 +13,8 @@ object EstablishData {
         establishDataValues["currency"] = "USD"
         establishDataValues["merchantReference"] = "some_unique_transaction_identifier"
         establishDataValues["paymentType"] = "Retrieval"
+        establishDataValues["customer.name"] = "John"
+        establishDataValues["customer.address.country"] = "US"
         establishDataValues["metadata.urlScheme"] = "sdkdemo://"
         establishDataValues["env"] = "sandbox"
         return establishDataValues

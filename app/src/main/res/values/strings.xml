@@ -4,4 +4,5 @@
     <string name="success">Success!</string>
     <string name="canceled">Canceled =(</string>
     <string name="back_to_home">Back to home</string>
+    <string name="trustly_url_scheme">sdkdemo</string>
 </resources>
